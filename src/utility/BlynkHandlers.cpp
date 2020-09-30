@@ -6,10 +6,9 @@
  * @date       Jan 2015
  * @brief      Virtual pin utilities
  */
-
+#include <Blynk/BlynkDebug.h>
 #include <Blynk/BlynkConfig.h>
 #include <Blynk/BlynkHandlers.h>
-#include <Blynk/BlynkDebug.h>
 
 void BlynkNoOpCbk()
 {}
