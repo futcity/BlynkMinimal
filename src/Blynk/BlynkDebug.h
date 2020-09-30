@@ -110,7 +110,7 @@ void            BlynkFatal() BLYNK_NORETURN;
         // This will cause error - on purpose
         #define BLYNK_LOG(msg, ...)  BLYNK_LOG_UNAVAILABLE(msg, ##__VA_ARGS__)
 #else
-        #define BLYNK_LOG(msg, ...)  blynk_dbg_print(BLYNK_PSTR(msg), ##__VA_ARGS__)
+        #define BLYNK_LOG(msg, ...) 0
 #endif
 
         #define BLYNK_LOG1(p1)            { BLYNK_LOG_TIME(); BLYNK_PRINT.println(p1); }
@@ -174,23 +174,6 @@ void            BlynkFatal() BLYNK_NORETURN;
         #include <stdio.h>
         #include <stdarg.h>
 
-        BLYNK_UNUSED
-        void blynk_dbg_print(const char* BLYNK_PROGMEM fmt, ...)
-        {
-            va_list ap;
-            va_start(ap, fmt);
-            char buff[128];
-            BLYNK_PRINT.print('[');
-            BLYNK_PRINT.print(BlynkMillis());
-            BLYNK_PRINT.print(BLYNK_F("] "));
-#if defined(__AVR__)
-            vsnprintf_P(buff, sizeof(buff), fmt, ap);
-#else
-            vsnprintf(buff, sizeof(buff), fmt, ap);
-#endif
-            BLYNK_PRINT.println(buff);
-            va_end(ap);
-        }
         #endif // ARDUINO_ARCH_ARC32
 
     #elif defined(__MBED__)
