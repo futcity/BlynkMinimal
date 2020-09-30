@@ -12,7 +12,6 @@
 #define BlynkArduinoClient_h
 
 #include <BlynkApiArduino.h>
-#include <Blynk/BlynkDebug.h>
 #include <Client.h>
 
 #if defined(ESP8266) && !defined(BLYNK_NO_YIELD)

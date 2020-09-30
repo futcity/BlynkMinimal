@@ -7,7 +7,6 @@
  * @brief      Debug utilities for Arduino
  */
 #include <Blynk/BlynkDebug.h>
-
 #if defined(ARDUINO) && defined(__AVR__) && defined(BLYNK_USE_AVR_WDT)
 
     #include <Arduino.h>

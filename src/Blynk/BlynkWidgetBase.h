@@ -11,11 +11,15 @@
 #define BlynkWidgetBase_h
 
 #include <Blynk/BlynkApi.h>
+#include <BlynkEsp8266.h>
 
 class BlynkWidgetBase
 {
 public:
-    BlynkWidgetBase(uint8_t vPin) : mPin(vPin) {}
+    BlynkWidgetBase(BlynkWifi &blynk):
+        mBlynk(blynk)
+    {}
+
     void setVPin(uint8_t vPin) { mPin = vPin; }
 
     void onWrite(BlynkReq BLYNK_UNUSED &request, const BlynkParam BLYNK_UNUSED &param) {
@@ -24,26 +28,27 @@ public:
 
     template<typename... Args>
     void setLabel(Args... args) {
-        Blynk.setProperty(mPin, "label", args...);
+        mBlynk.setProperty(mPin, "label", args...);
     }
 
     template<typename... Args>
     void setColor(Args... args) {
-        Blynk.setProperty(mPin, "color", args...);
+        mBlynk.setProperty(mPin, "color", args...);
     }
 
     template<typename... Args>
     void setMin(Args... args) {
-        Blynk.setProperty(mPin, "min", args...);
+        mBlynk.setProperty(mPin, "min", args...);
     }
 
     template<typename... Args>
     void setMax(Args... args) {
-        Blynk.setProperty(mPin, "max", args...);
+        mBlynk.setProperty(mPin, "max", args...);
     }
 
 protected:
     uint8_t mPin;
+    BlynkWifi &mBlynk;
 };
 
 class BlynkAttachWidgetHelper {
